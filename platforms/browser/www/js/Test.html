@@ -1,0 +1,41 @@
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+
+
+    input{ height: 100px} legend{cursor: col-resize}#field{height:10%;padding:1%;overflow-y:hidden;background: #0bb8cc }</style>
+
+</head>
+<body>
+
+<div id="field">
+    <fieldset>
+        <legend id="leg">&blk34;</legend>
+        <div>
+            <input type="text" >
+        </div>
+    </fieldset>
+
+</div>
+<script>
+    document.getElementById("leg").addEventListener("click",function (ev) {
+
+        document.getElementById("field").style.paddingTop="30%";
+
+
+
+    })
+    document.getElementById("leg").addEventListener("dblclick",function () {
+
+        document.getElementById("field").style.paddingTop="1%";
+    })
+</script>
+</body>
+</html>

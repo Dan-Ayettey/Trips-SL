@@ -1,0 +1,724 @@
+<!DOCtype>
+<html lang="ee">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0 ">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .from_and_to{
+            float: left;
+            width: 40%;
+        }
+
+
+        #point_left_y{
+            margin: 0;
+            padding: 0;
+            cursor: pointer;
+            display: inline-block;
+            float: left;
+            text-align: center;
+
+        }
+        .point_separator{
+
+            background: none;
+            margin: -20px 2px -18px 2px;
+            font-size: 30px;
+
+
+        }
+
+        #switch_search_input{
+            width: 34px;
+            height: 36px;
+            font-size: 24px;
+            margin: 0;
+            float: left;
+            text-align: center;
+            padding: 0;
+            border: none;
+            background: none;
+            font-weight: bold;
+
+
+        }
+
+
+
+
+        .point_separator:hover{
+            color:  #edc670;
+
+        }
+        .position_dot:hover{
+            color:  #edc670;
+        }
+        #switch_search_input:hover{
+            color:  #edc670;
+            text-align: center;
+        }
+        #search{
+            width: 80px;
+            font-weight: bold;
+            text-align: center;
+            display: none;
+
+            margin-left: 40px;
+        }
+
+        #draggable_it .resize{
+        height:96%;
+        -webkit-transition: height 1s ease;
+            -moz-transition: height 1s ease;
+              -o-transition: height 1s ease;
+             -ms-transition: height 1s ease;
+                 transition: height 1s ease;
+
+
+
+        }
+
+        #draggable_check_event{
+            position: absolute;
+            bottom: 0;
+            margin: 0;
+            padding: 0;
+            left: 0;
+            right: 0;
+            scrollbar-color: transparent;
+            scrollbar-width: 0;
+            border-top: thin solid #dddddd;
+
+            webkit-transition: height 1s ease;
+           -moz-transition: height 1s ease;
+              -o-transition: height 1s ease;
+             -ms-transition: height 1s ease;
+                transition: height 1s ease;"
+
+            scrollbar-base-color:transparent;
+            scrollbar-3dlight-color:transparent;
+                    scrollbar-arrow-color:transparent;
+                    scrollbar-track-color:transparent;
+                    scrollbar-darkshadow-color:transparent;
+                    scrollbar-face-color:transparent;
+                    scrollbar-highlight-color:transparent;
+                    scrollbar-shadow-color:transparent;
+
+            overflow-y:scroll ;
+            z-index: 100;
+            border-radius: 4px;
+            height: 340px;
+            border-top: thin solid inherit;
+            box-shadow: 0 3px 6px;
+            background: white;
+
+
+
+
+        }
+        #draggable{
+
+            cursor: pointer;
+            text-align: center;
+            border-radius: 2px;
+            font-size: 33px;
+            padding: 0;
+            margin: 0 0 0 45%;
+
+        }
+
+        table{
+
+            text-align: left;
+            border-color: #dddddd;
+            box-shadow: 0 3px 6px transparent;
+            width: 100%;
+        }
+
+
+        .transportation_hub{
+            box-shadow: 0 3px 6px transparent;
+            color: transparent;
+            text-shadow: 0 0 0 rgb(124, 124, 124);
+            margin-right: 0;
+        }
+
+        .transportation_hub:hover{
+            cursor: pointer;
+            color:  #edc670;
+        }
+        .transportation_hub:hover #station_ecosystems{
+            visibility: visible;
+        }
+
+        .transportation_hub_right_arrow:hover{
+            cursor: pointer;
+            color:  #edc670;
+        }
+        @keyframes blinker {
+            50%{
+                opacity: 0;
+            }
+        }
+
+        #check_traffic{
+            margin-bottom: 10px;
+            margin-top: 20px;
+            width: 100%;
+            display: inline-block;
+        }
+        .right_arrow{
+            color:  #edc670;
+            box-shadow: 0 3px 6px transparent;
+            margin-right: 20px;
+            font-weight: bolder;
+            font-size: 16px;
+            margin-left: -40px;
+
+            background: transparent;
+            animation: blinker 2s infinite;
+
+        }
+
+
+        .left_arrow{
+
+            background: transparent;
+            box-shadow: 0 3px 6px transparent;
+            padding-left: 20px;
+            font-weight: bolder;
+            font-size: 16px;
+            color:  #edc670;
+            animation: blinker 2s infinite;
+        }
+        body{
+
+            margin: 1px 0.1cm 1cm 0.02cm;
+            scrollbar-color: transparent;
+            scrollbar-width: none;
+            -webkit-touch-callout: none; /* iOS Safari */
+            -webkit-user-select: none; /* Safari */
+            -khtml-user-select: none; /* Konqueror HTML */
+            -moz-user-select: none; /* Old versions of Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none;
+            font-weight: lighter;
+            color: #43425D;
+            font-size: medium;
+            font-family: "Yu Gothic", "Advent Pro", -apple-system-font, HelveticaNeue-Light, HelveticaNeue, Helvetica, Arial, sans-serif, sans-serif;
+        }
+        div, span{
+            border-radius: 3px 3px 0 0;
+            box-shadow: 0 3px 6px transparent;
+        }
+        th{
+
+            background-color: #43425D;
+            border-radius: 3px 3px 0 0;
+
+            height: 32px;
+            text-align: left;
+            border: none;
+            font-weight: 500;
+            font-family: "Yu Gothic", "Advent Pro", -apple-system-font, 'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif, sans-serif;
+
+
+
+
+
+
+        }
+
+        img{
+            width: 1%;
+            transform: scale(1.13);
+            cursor: pointer;
+        }
+
+        /* width */
+        ::-webkit-scrollbar {
+            width: 0;
+
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            height: 2px;
+        }
+
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        fieldset{
+            border-radius:3px;
+            border: 0.2mm solid #d6d6d6;
+
+            box-shadow: 0 3px 6px #ececec;
+
+        }
+
+        ::-webkit-scrollbar {
+            height: 0;
+            width: 0;
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: transparent;
+            -webkit-border-radius: 1ex;
+            -webkit-box-shadow: 0 1px 2px #43425D;
+        }
+
+
+        select:focus{
+            background: #0bb8cc;
+        }
+
+
+
+        ::-webkit-scrollbar-corner {
+            background: transparent;
+        }
+
+
+
+
+        .stations{
+
+            position: relative;
+            overflow-x: scroll;
+            -webkit-transition: height 1s ease;
+            -moz-transition: height 1s ease;
+            -o-transition: height 1s ease;
+            -ms-transition: height 1s ease;
+            transition: height 1s ease;
+
+            scrollbar-color: transparent;
+            scrollbar-width: none;
+            box-shadow: 0 3px 6px transparent;
+            height: 22px;
+
+
+
+        }
+
+        .schedule_time{
+            width: 30%;
+            margin: 1px;
+            font-size: 12px;
+            display: inline-block;
+            float: left;
+        }
+        summary{
+            font-size: small;
+        }
+        input:focus{
+            text-align: left;
+        }
+        .stations_hive{
+            position: absolute;
+            width: 1920px;
+            height: 40px;
+            font-weight: bold;
+            background: #f1f1f1;
+            box-shadow: 0 3px 6px green;
+
+
+        }
+        .transports{
+            margin-left: 1px;
+            box-shadow: 0 3px 6px transparent;
+            margin-top: 10px;
+        }
+        .transportation_hub{
+
+            box-shadow: 0 3px 6px transparent;
+            padding-left: 50px;
+        }
+
+
+        @media only screen and (min-width: 1366px){
+            #transport_localization{
+                text-align: center;
+            }
+            #arrow_down, #arrow_up, .left_arrow, .right_arrow{
+
+                display: none;
+
+            }
+            #search{
+                display: inline-block;
+            }
+
+
+        }
+
+        #draggable_fieldset{
+            margin-top: -16px;
+        }
+
+        #station_ecosystems{
+
+            color: #ffffff;
+            padding: 0;
+            height: 40px;
+            border-radius: 5px 5px 0 0;
+            margin: 0 3px 0 3px;
+
+            font-size: 87%;
+            border: 0.2mm solid #d6d6d6;
+
+            box-shadow: 0 3px 6px #ececec;
+        }
+
+        .active{
+            color:  #edc670;
+        }
+
+        #content_fieldset{
+            margin-top: 8px;
+        }
+        input{
+            color: #4B946A;
+            height: 48px;
+
+            float: left;
+
+            width: 100%;
+            margin: 2px ;
+            text-indent: 3px;
+            border-radius:4px;
+            cursor: pointer;
+            border: 0.2mm solid #d6d6d6;
+            box-shadow: 0 3px 6px #ececec;
+
+        }
+
+
+    </style>
+</head>
+<body>
+<!--
+<form autocomplete="off">
+    <fieldset>
+        <legend>Search Journey</legend>
+
+<table >
+    <tbody>
+
+    <tr >
+
+
+
+    <tr id="toggle_ecosystems">
+        <th colspan="100%" id="station_ecosystems">
+
+            <div class="stations" id="sub_ecosystems" >
+
+                <div class="stations_hive">
+
+              <div class="transports"  >
+
+                  <span  id="local_train" class="transportation_hub_right_arrow active transportation_hub"><span class="right_arrow">&rightarrow;</span>Trains</span>
+                  <span id="walk" class="transportation_hub">Walk</span>
+                  <span id="flight" class="transportation_hub">Flight</span>
+                  <span id="Inter Countries" class="transportation_hub">Inter Countries </span>
+                  <span id="Inter Continent" class="transportation_hub">Inter Continent </span>
+                  <span id="bus" class="transportation_hub">Bus</span>
+                  <span id="Taxi" class="transportation_hub">Taxi</span>
+                  <span id="intercity" class="transportation_hub">Intercity</span>
+                  <span id="Space" class="transportation_hub">Space</span>
+                  <span id="Packing" class="transportation_hub">Packing</span>
+                  <span id="scooter" class="transportation_hub">Scooter<span class="left_arrow">&leftarrow;</span></span>
+
+              </div>
+                </div>
+            </div>
+
+
+        </th>
+
+
+    </tr>
+    <tr>
+        <th class="th_middle">
+            <label>
+                <input type="text" list="from_and_to"> <input type="text"><input  list="from_and_to_" type="button" value="Go">
+                <datalist id="from_and_to">
+                    <option value="God"> </option>
+                </datalist>
+                <datalist id="from_and_to_">
+                    <option value="God"> </option>
+                </datalist>
+            </label>
+        </th>
+    </tr>
+    </tbody>
+</table>
+    </fieldset>
+</form>
+
+
+<script type="text/javascript">
+
+    let active_train_systems=document.getElementsByClassName("transportation_hub");
+
+    for(let active of active_train_systems){
+        active.addEventListener("click",function () {
+            let ecosystems=document.getElementsByClassName("active");
+            ecosystems[0].className=ecosystems[0].className.replace(" active"," ");
+             this.className+=" active";
+
+
+        })
+    }
+
+</script>
+
+
+-->
+
+
+
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+
+
+<section id="content">
+
+<div id="kill">
+    <iframe
+            id="inlineFramed"
+            title="Inline Frame Example"
+            width="100%"
+            height="81%"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik">
+
+
+    </iframe>
+</div>
+
+
+    <section id="draggable_it">
+    <section id="draggable_check_event" >
+
+
+        <div class="draggable_check_event" >
+
+
+    <fieldset id="draggable_fieldset">
+        <legend id="draggable" draggable="true">&blacktriangle;</legend>
+        <div >
+
+
+        <div id="check_traffic">
+            <div >
+                <div>
+                    <label>
+                        <input id="from_position" class="from_and_to" placeholder="From " type="text" name="from">
+                        <input type="text" class="from_and_to"  placeholder="To" name="where to" id="to_position">
+                    </label>
+
+                </div>
+                <div  id="point_left_y"> <div class="position_dot">&xodot;</div><div class="point_separator">&#x21E1;</div>
+                    <div class="position_dot">&xodot;</div></div>
+
+                <input type="button" id="switch_search_input" value="&duarr;"/>
+                <input type="button" id="search" value="Go"/>
+
+            </div>
+        </div>
+        <div class="stations" id="station_ecosystems" >
+
+            <div class="stations_hive">
+
+                <div class="transports"  >
+
+            <span  id="indicator_right" class="transportation_hub_right_arrow active transportation_hub"><span class="right_arrow">&rightarrow;</span>
+                <img alt="" src="res/icon/iconia/train.png"/></span>
+                    <span id="bus" class="transportation_hub"><img alt="" src="res/icon/iconia/bus.png"></span>
+                    <span id="walk" class="transportation_hub"><img alt="" src="res/icon/iconia/walk.png"></span>
+                    <span id="sprint" class="transportation_hub"><img alt="" src="res/icon/iconia/sprint.png"></span>
+                    <span id="walk_dog" class="transportation_hub"><img alt="" src="res/icon/iconia/walk_a_dog.png"></span>
+                    <span id="cycles" class="transportation_hub"><img alt="" src="res/icon/iconia/bicycle_i.png"></span>
+                    <span id="disabled" class="transportation_hub"><img alt="" src="res/icon/iconia/disabled.png"></span>
+                    <span id="Taxi" class="transportation_hub"><img alt="" src="res/icon/iconia/taxi.png"></span>
+                    <span id="flight" class="transportation_hub"><img alt="" src="res/icon/iconia/flight.png"></span>
+                    <span id="Inter Countries" class="transportation_hub"><img alt="" src="res/icon/iconia/inter_countries.png"></span>
+                    <span id="Inter Continent" class="transportation_hub"><img alt="" src="res/icon/iconia/inter_Continent.png"></span>
+                    <span id="cargo" class="transportation_hub"> <img alt="" src="res/icon/iconia/inter_Continent_ship.png"></span>
+                    <span id="ship" class="transportation_hub"><img alt="" src="res/icon/iconia/ship.png"></span>
+                    <span id="ferry" class="transportation_hub"> <img alt="" src="res/icon/iconia/yaht.png"></span>
+                    <span id="sailing" class="transportation_hub"><img alt="" src="res/icon/iconia/ferry.png"></span>
+                    <span id="camping" class="transportation_hub"><img alt="" src="res/icon/iconia/camping.png"></span>
+                    <span id="Space" class="transportation_hub"><img alt="" src="res/icon/iconia/space_2.png"></span>
+                    <span id="roll_boat" class="transportation_hub"><img alt="" src="res/icon/iconia/roll_a_board.png"></span>
+                    <span id="delivery_transport" class="transportation_hub"><img alt="" src="res/icon/iconia/delivery_service.png"></span>
+                    <span id="space_balloon" class="transportation_hub"><img alt="" src="res/icon/iconia/air_balloon.png"></span>
+                    <span id="Packing" class="transportation_hub"><img alt="" src="res/icon/iconia/packing_2.png"></span>
+                    <span id="charging_stations" class="transportation_hub"><img alt="" src="res/icon/iconia/charge_car.png"></span>
+                    <span id="spike" class="transportation_hub"><img alt="" src="res/icon/iconia/spike_2.png"></span>
+                    <span id="tore_a_car" class="transportation_hub"><img alt="" src="res/icon/iconia/tore_a_car.png"></span>
+                    <span id="skate_board" class="transportation_hub"><img alt="" src="res/icon/iconia/skate_board_2.png"></span>
+                    <span id="scooter" class="transportation_hub"><img alt="" src="res/icon/iconia/scooter_2.png"><span class="left_arrow">&leftarrow;</span></span>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <span id="date_group">
+<span class="date" id="date"> </span>
+<span class="date" id="time"> </span>
+</span>
+
+        <section id="input_contents">
+
+
+            <form autocomplete="off">
+                <fieldset id="content_fieldset">
+
+                    <legend>Search Journey </legend>
+                    <div   class="train_alternatives_th">
+                        <table>
+                            <tbody>
+
+                            <tr>
+
+
+                            <tr>
+                                <th colspan="100%" style="background: white">
+
+                                    <div id="other_content">   <details><summary>Other Alternative</summary>
+                                        <fieldset id="content_fieldset_others">
+
+                                            <div class="schedule_time" >
+                                                <div>Now</div>
+                                                <label>
+                                                    <input type="time" class="time"  id="now">
+                                                </label>
+
+                                            </div>
+                                            <div class="schedule_time">
+                                                <div>Leaving</div>
+                                                <label>
+                                                    <input type="time" class="time"  id="leaving">
+                                                </label>
+
+                                            </div>
+                                            <div class="schedule_time">
+                                                <div>Arriving at</div>
+                                                <label >
+                                                    <input type="time" class="time"  id="arriving">
+                                                </label>
+
+                                            </div>
+                                        </fieldset>
+                                    </details>
+
+                                    </div>
+
+                                </th>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <table id="time_table_departure">
+                            <tbody>
+
+
+                            <tr>
+                                <th  id="other_alternatives_th_left_radius">
+                                    Departure
+                                </th>
+                                <th>
+                                    Time
+                                </th>
+
+                                <th>
+                                    Train
+                                </th>
+                                <th id="other_alternatives_th_right_radius" >
+                                    Platform
+                                </th>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                        <fieldset id="map_fieldset">
+                            <legend>Pin Point</legend>
+                            <iframe id="inlineFrame"
+                                    title="Inline Frame Example"
+                                    width="100%"
+                                    height="81%">
+
+
+                            </iframe>
+                        </fieldset>
+
+                    </div>
+
+                </fieldset>
+            </form>
+        </section>
+    </div>
+    </fieldset>
+
+        </div>
+    </section>
+
+    </section>
+</section>
+<script>
+    document.getElementsByTagName("summary")[0].click();
+
+    let draggableIt=document.getElementById("draggable_check_event");
+    let draggable=document.getElementById("draggable");
+     draggable.addEventListener("click",function (event) {
+
+
+        let resize= draggableIt.classList.toggle("resize");
+         resize ? this.innerHTML="&blacktriangledown;":this.innerHTML="&blacktriangle;";
+
+
+
+    });
+    let inlineFramed=document.getElementById("kill");
+    inlineFramed.addEventListener("click",function () {
+        alert()
+    })
+
+
+    let search=document.getElementById("search");
+    search.addEventListener("click",function (event) {
+
+
+        if(draggableIt.offsetHeight<600){
+           draggableIt.classList.toggle("resize");
+            draggable.innerHTML="&blacktriangledown;";
+
+        }
+
+
+
+
+
+
+    })
+</script>
+</body>
+</html>
